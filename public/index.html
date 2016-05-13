@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>React Tutorial</title>
+    <title>Mobile Stats 2.0</title>
     <!-- Not present in the tutorial. Just for basic styling. -->
     <link rel="stylesheet" href="css/base.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
@@ -10,96 +10,143 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <style>
+      body {
+        background-color: black;
+      }
+      .unit {
+        color: black;
+        font-size: 18px;
+        width: 125px;
+      }
+
+    </style>
   </head>
   <body>
     <div id="content"></div>
     <script type="text/babel">
       var data = [
-        {id:1, author:"Pete Hunt", text:"This is one comment"},
-        {id:2, author:"Jordan Walke2",text:"This is *another* comment"}
+        {
+          "unit_id": "M01",
+          "status": "ER",
+          "timestamp": "5/12/2016 07:17",
+          "channel": "DISP1",
+          "assigned_incident": 112345,
+          "location": "1683 HANSON ST",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M02",
+          "status": "AQ",
+          "timestamp": "5/12/2016 06:10",
+          "channel": "",
+          "assigned_incident": 0 ,
+          "location": "IN STATION",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M03",
+          "status": "TR",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP1",
+          "assigned_incident": 112347,
+          "location": "D1 P1 P2 1P3 X26",
+          "agency": "LC",
+          "district": "N",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M04",
+          "status": "AQ",
+          "timestamp": "5/12/2016 05:25",
+          "channel": "",
+          "assigned_incident": 0,
+          "location": "IN STATION",
+          "agency": "LC",
+          "district": "CC",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M05",
+          "status": "RQ",
+          "timestamp": "5/12/2016 07:18",
+          "channel": "",
+          "assigned_incident": 0,
+          "location": "TAMPA/SAN CARLOS>>EMS09",
+          "agency": "LC",
+          "district": "W",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M06",
+          "status": "AR",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        }
       ];
 
-      var CommentBox = React.createClass({
-        getInitialState: function() {
-          return {data: []};
-        },
-        loadCommentsFromServer: function() {
-          $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            cache: false,
-            success: function(data){
-              this.setState({data:data});
-            }.bind(this),
-            error: function(xhr,status,err){
-              console.error(this.props.url, status, err.toString());
-            }.bind(this)
-          });
-        },
-        componentDidMount: function() {
-          this.loadCommentsFromServer();
-          setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-        },
-
+      var UnitsBox = React.createClass({
         render: function() {
+          var unitNodes = this.props.data.map(function(unit){
+            return (
+                <Unit {...unit} key={unit.unit_id} >
+                  {unit.unit_id}
+                </Unit>
+              );
+          });
+
           return (
-              <div className="commentBox">
-                <h1>Comments</h1>
-                <CommentList data={this.state.data} />
-                <CommentForm />
+              <div className="unitsBox container" >
+                {unitNodes}
               </div>
             );
         }
       });
 
-      var CommentList = React.createClass({
+      var Unit = React.createClass({
         render: function() {
 
-          var CommentNodes = this.props.data.map( function(comment){
-            return (
-                <Comment author={comment.author} key={comment.id} >
-                  {comment.text}
-                </Comment>
-              );
-          });
-
-
           return (
-            <div className="commentList" >
-              {CommentNodes}
-            </div>
-          );
-        }
-      });
-
-      var CommentForm = React.createClass({
-        render: function() {
-          return (
-            <div className="commentForm" >Hello, world! I am a CommentForm.</div>
-          );
-        }
-      });
-
-      var Comment = React.createClass({
-          rawMarkup: function() {
-            var rawMarkup = marked(this.props.children.toString(),{sanitize: true});
-            return { __html: rawMarkup };
-          },
-
-          render: function() {
-            return (
-              <div className="comment">
-                <h2 className="commentAuthor">
-                  {this.props.author}
-                </h2>
-                <span dangerouslySetInnerHTML={ this.rawMarkup() } />
-              </div>
+              <button type="button" className="unit btn btn-lg btn-default">
+                <div class="unit_title">{this.props.unit_id} - {this.props.status}</div>
+                <div class="unit_image">
+                  IMG
+                </div>
+                <div class="unit_location" >
+                  {this.props.location}
+                </div>
+                <div class="unit_timeInStatus">
+                  0:33
+                </div>
+              </button>
             );
         }
       });
 
       ReactDOM.render(
-        <CommentBox url="/api/comments" pollInterval={2000} />,
+        <UnitsBox data={data} />,
         document.getElementById('content')
       );
     </script>
