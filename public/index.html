@@ -26,12 +26,22 @@
         color: black;
         font-size: 18px;
         width: 125px;
+        background-color: #C0C0C0;
+        text-align: center;
+      }
+      .unit_location {
+        font-size: 10px;
+        white-space: normal;
+        height: 29px;
+      }
+      .btn {
+        margin: 5px;
       }
 
     </style>
   </head>
   <body>
-    <div id="content"></div>
+    <div id="content" class="container-fluid"></div>
     <script type="text/babel">
       var data = [
         {
@@ -118,7 +128,7 @@
           });
 
           return (
-              <div className="unitsBox container" >
+              <div className="row unitsBox" >
                 {unitNodes}
               </div>
             );
@@ -129,18 +139,18 @@
         render: function() {
 
           return (
-              <button type="button" className="unit btn btn-lg btn-default">
-                <div class="unit_title">{this.props.unit_id} - {this.props.status}</div>
-                <div class="unit_image">
-                  IMG
+              <div className="col-md-1 unit">
+                <div className="unit_title">{this.props.unit_id} - {this.props.status}</div>
+                <div className="unit_image">
+                  <a href="#unitPop" >IMG</a>
                 </div>
-                <div class="unit_location" >
+                <div className="unit_location" >
                   {this.props.location}
                 </div>
-                <div class="unit_timeInStatus">
+                <div className="unit_timeInStatus">
                   0:33
                 </div>
-              </button>
+              </div>
             );
         }
       });
