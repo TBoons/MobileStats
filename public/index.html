@@ -109,7 +109,7 @@
         },
         {
           "unit_id": "M06",
-          "status": "AR",
+          "status": "SA",
           "timestamp": "5/12/2016 07:10",
           "channel": "DISP2",
           "assigned_incident": 112348,
@@ -120,11 +120,48 @@
         }
       ];
 
+      var incidents = {
+        "incident":{
+          "incident_id":112348
+          ,"incident_text":"BLAH BLAH STUFF HERE"
+          ,"agency_incident_number":"MLC160517039578"
+          ,"incident_type":"BREATHING PROBLEMS"
+          ,"incident_crew":"BELL, ROBERT / VARA, DANIEL /"
+        }
+      };
+
+      var status_icons = {
+        "status": {
+          "default" : "fa-ambulance"
+          ,"DP" : "fa-medkit"
+          ,"ER" : "fa-medkit"
+          ,"AR" : "fa-medkit"
+          ,"TR" : "fa-medkit"
+          ,"TA" : "fa-medkit"
+          ,"OL" : "fa-medkit"
+          ,"EO" : "fa-medkit"
+          ,"AQ" : "fa-home"
+          ,"AS" : "fa-arrow-circle-right"
+          ,"SB" : "fa-arrow-circle-right"
+          ,"ES" : "fa-arrow-circle-right"
+          ,"RQ" : "fa-ambulance"
+        }
+      };
+
+      var application_settings = {
+        "icon_size": 3
+      };
+
       var UnitsBox = React.createClass({
         render: function() {
           var unitNodes = this.props.data.map(function(unit){
+            var thisStatusIcon = status_icons.status['default']; //sets icon to default
+
+            if ( status_icons.status[unit.status] != undefined ){ //finds icon in structure
+              thisStatusIcon = status_icons.status[unit.status];
+            }
             return (
-                <Unit {...unit} key={unit.unit_id} >
+                <Unit {...unit} key={unit.unit_id} statusIcon={thisStatusIcon} >
                   {unit.unit_id}
                 </Unit>
               );
@@ -140,13 +177,12 @@
 
       var Unit = React.createClass({
         render: function() {
-
+          var thisClass = "fa " + this.props.statusIcon + " fa-" + application_settings.icon_size + "x";
           return (
               <div className="col-md-1 unit">
                 <div className="unit_title">{this.props.unit_id} - {this.props.status}</div>
                 <div className="unit_image">
-                  <a href="#unitPop" data-toggle="modal" ><i className="fa fa-home fa-4x" aria-hidden="true"></i>
-</a>
+                  <a href="#unitPop" data-toggle="modal" className="open-UnitPop" id={this.props.unit_id} ><i className={thisClass} aria-hidden="true"></i></a>
                 </div>
                 <div className="unit_location" >
                   {this.props.location}
@@ -159,6 +195,15 @@
         }
       });
 
+      $(document).on("click", ".open-UnitPop", function () {
+        console.log(this.id);
+        var unit_id = this.id;
+        $("#unitPop_header").html("<h4>" + unit_id + "</h4>");
+        $("#unitPop_incidentText").html( incidents.incident.incident_text );
+        $("#unitPop_incidentType").html( "Incident Type: " + incidents.incident.incident_type );
+        $("#unitPop_incidentCrew").html( "Crew: " + incidents.incident.incident_crew );
+      });
+
       ReactDOM.render(
         <UnitsBox data={data} />,
         document.getElementById('content')
@@ -168,8 +213,12 @@
     <div class="modal fade" id="unitPop" role="dialog" >
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <p>Contract Texct site</p>
+          <div class="modal-header" id="unitPop_header">
+          </div>
+          <div class="modal-body" id="unitPop_body">
+            <p id="unitPop_incidentText"></p>
+            <p id="unitPop_incidentType"></p>
+            <p id="unitPop_incidentCrew"></p>
           </div>
         </div>
       </div>
