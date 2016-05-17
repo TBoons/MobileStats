@@ -1,7 +1,7 @@
 {
-  "name": "react-tutorial",
+  "name": "mobile-stats",
   "version": "0.0.0",
-  "description": "Code from the React tutorial.",
+  "description": "Code for Lee County Mobile Status",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.4.3",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/react-tutorial.git"
+    "url": "https://github.com/TBoons/MobileStats.git"
   },
   "keywords": [
     "react",
@@ -22,11 +22,11 @@
     "comment",
     "example"
   ],
-  "author": "petehunt",
+  "author": "Tim Boonstra",
   "bugs": {
-    "url": "https://github.com/reactjs/react-tutorial/issues"
+    "url": "s"
   },
-  "homepage": "https://github.com/reactjs/react-tutorial",
+  "homepage": "http://localhost:3000",
   "engines" : {
     "node" : "0.12.x"
   }
