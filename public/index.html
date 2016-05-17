@@ -28,6 +28,8 @@
         width: 125px;
         background-color: #C0C0C0;
         text-align: center;
+        margin-left: 2px;
+        margin-right: 2px;
       }
       .unit_location {
         font-size: 10px;
@@ -142,7 +144,7 @@
               <div className="col-md-1 unit">
                 <div className="unit_title">{this.props.unit_id} - {this.props.status}</div>
                 <div className="unit_image">
-                  <a href="#unitPop" >IMG</a>
+                  <a href="#unitPop" data-toggle="modal" >IMG</a>
                 </div>
                 <div className="unit_location" >
                   {this.props.location}
@@ -160,5 +162,15 @@
         document.getElementById('content')
       );
     </script>
+
+    <div class="modal fade" id="unitPop" role="dialog" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p>Contract Texct site</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
