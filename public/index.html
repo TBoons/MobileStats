@@ -212,20 +212,20 @@
         $("#unitPop_incidentCrew").html( "Crew: " + incidents.incident.incident_crew );
       });
 
-      // $(document).on("mouseover",".unit", function(){
-      //   console.log('here');
-      //   var actionItems = jQuery(this).find(".unit_actions");
-      //   $( actionItems ).animate({
-      //     height: "25px",
-      //   }, 0 );
-      // });
+      $(document).on("mouseenter",".unit", function(){
+        console.log('over');
+        var actionItems = jQuery(this).find(".unit_actions");
+        $( actionItems ).animate({
+          height: "25px",
+        }, 0 );
+      });
 
-      // $(document).on("mouseleave",".unit", function(){
-      //   var actionItems = jQuery(this).find(".unit_actions");
-      //   $( actionItems ).animate({
-      //     height: "0px",
-      //   }, 0 );
-      // });
+      $(document).on("mouseleave",".unit", function(){
+        var actionItems = jQuery(this).find(".unit_actions");
+        $( actionItems ).animate({
+          height: "0px",
+        }, 0 );
+      });
 
       ReactDOM.render(
         <UnitsBox data={data} />,
