@@ -1,0 +1,15 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+	function unitsJSON(){
+        var thisData = $.getJSON("units.json", function(data){
+          return data;
+        });
+        return thisData;
+      };
+
+      var unitsData = unitsJSON();
+
+      console.log(unitsData.statusText); //undefined -- ?
+      console.log(unitsData.responseJSON); //undefined -- ?
+      console.log(unitsData); // how do I get to the items in this obejct???
+</script>
