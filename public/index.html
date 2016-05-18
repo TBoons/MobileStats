@@ -40,12 +40,17 @@
       .btn {
         margin: 5px;
       }
+      .unit_actions {
+        height: 0px;
+        background-color: red;
+      }
 
     </style>
   </head>
   <body>
     <div id="content" class="container-fluid"></div>
     <script type="text/babel">
+
       var data = [
         {
           "unit_id": "M01",
@@ -177,12 +182,16 @@
 
       var Unit = React.createClass({
         render: function() {
-          var thisClass = "fa " + this.props.statusIcon + " fa-" + application_settings.icon_size + "x";
+          var thisImageClass = "fa " + this.props.statusIcon + " fa-" + application_settings.icon_size + "x";
           return (
               <div className="col-md-1 unit">
-                <div className="unit_title">{this.props.unit_id} - {this.props.status}</div>
+                <div className="unit_title" data-unit_id={this.props.unit_id} >
+                  {this.props.unit_id} - {this.props.status}
+                  <div className="unit_actions" data-unit_id={this.props.unit_id} >
+                  </div>
+                </div>
                 <div className="unit_image">
-                  <a href="#unitPop" data-toggle="modal" className="open-UnitPop" id={this.props.unit_id} ><i className={thisClass} aria-hidden="true"></i></a>
+                  <a href="#unitPop" data-toggle="modal" className="open-UnitPop" data-unit_id={this.props.unit_id} ><i className={thisImageClass} aria-hidden="true"></i></a>
                 </div>
                 <div className="unit_location" >
                   {this.props.location}
@@ -196,13 +205,27 @@
       });
 
       $(document).on("click", ".open-UnitPop", function () {
-        console.log(this.id);
-        var unit_id = this.id;
+        var unit_id = this.dataset.unit_id;
         $("#unitPop_header").html("<h4>" + unit_id + "</h4>");
         $("#unitPop_incidentText").html( incidents.incident.incident_text );
         $("#unitPop_incidentType").html( "Incident Type: " + incidents.incident.incident_type );
         $("#unitPop_incidentCrew").html( "Crew: " + incidents.incident.incident_crew );
       });
+
+      // $(document).on("mouseover",".unit", function(){
+      //   console.log('here');
+      //   var actionItems = jQuery(this).find(".unit_actions");
+      //   $( actionItems ).animate({
+      //     height: "25px",
+      //   }, 0 );
+      // });
+
+      // $(document).on("mouseleave",".unit", function(){
+      //   var actionItems = jQuery(this).find(".unit_actions");
+      //   $( actionItems ).animate({
+      //     height: "0px",
+      //   }, 0 );
+      // });
 
       ReactDOM.render(
         <UnitsBox data={data} />,
