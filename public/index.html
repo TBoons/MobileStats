@@ -52,6 +52,8 @@
     <div id="content" class="container-fluid"></div>
     <script type="text/babel">
 
+      var aryUnits = ["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23","M24","M25","M26","M27","M28","M30","M31","M32","M33","M34","M35","M37","M40"];
+
       var data = [
         {
           "unit_id": "M01",
@@ -370,6 +372,97 @@
       var UnitsBox = React.createClass({
         render: function() {
           var unitNodes = this.props.data.map(function(unit){
+            return (
+                <Unit key={unit} unit_id={unit} >
+                </Unit>
+              );
+          });
+
+          return (
+              <div className="row unitsBox" >
+                {unitNodes}
+              </div>
+            );
+        },
+        componentDidMount: function(){
+          console.log("Mounted...");
+          unitsWorker();
+        }
+      });
+
+      var Unit = React.createClass({
+        render: function() {
+          return (
+              <div className="col-md-1 unit" id={this.props.unit_id+ "_unit"}  >
+                <div className="unit_title" >
+                  {this.props.unit_id}
+                </div>
+                <div className="unit_image" >
+                  <i aria-hidden="true"></i>
+                </div>
+                <div className="unit_location" >
+
+                </div>
+                <div className="unit_timeInStatus">
+
+                </div>
+              </div>
+            );
+        }
+      });
+
+      var unitsWorker = function(){
+        for ( var i = 0; i <= aryUnits.length; i++ ){
+          var currentUnitData = getUnitData( aryUnits[i] );
+          var unitDiv = '#' + aryUnits[i] + "_unit";
+          var thisStatusIcon = status_icons.status['default']; //sets icon to default
+          if ( currentUnitData.status != undefined ){
+            var timeInStatus = calcTimeInStatus( currentUnitData.timestamp );
+            if ( status_icons.status[currentUnitData.status] != undefined ){ //finds icon in structure
+              thisStatusIcon = status_icons.status[currentUnitData.status];
+            }
+            $(unitDiv).find(".unit_title").html(aryUnits[i] + ' - ' + currentUnitData.status);
+            $(unitDiv).find(".unit_image").find("i").addClass("fa " + thisStatusIcon + " fa-" + application_settings.icon_size + "x");
+            $(unitDiv).find(".unit_location").html(currentUnitData.location);
+            $(unitDiv).find(".unit_timeInStatus").html(timeInStatus);
+          } else {
+            $(unitDiv).find(".unit_title").html(aryUnits[i] + ' - NA' );
+            $(unitDiv).find(".unit_image").find("i").addClass("fa " + thisStatusIcon + " fa-" + application_settings.icon_size + "x");
+            $(unitDiv).find(".unit_location").html("&nbsp;");
+            $(unitDiv).find(".unit_timeInStatus").html("&nbsp;");
+          }
+        }
+      }
+
+      var calcTimeInStatus = function(statusTime){
+        var currentTime = new Date();
+        var thisStatusTime = new Date(statusTime);
+        var diffMs = ( currentTime - thisStatusTime );
+        var minutes = Math.floor((diffMs/1000)/60);
+        return minutes;
+      }
+
+      var getUnitData = function(unit){
+        var rtn = {
+          "unit_id" : unit
+        };
+        data.map(function(i){
+          if ( i.unit_id === unit ){
+            rtn = i;
+          }
+        });
+        return rtn;
+      }
+
+      ReactDOM.render(
+        <UnitsBox data={aryUnits} />,
+        document.getElementById('content')
+      );
+
+      /*
+      var UnitsBox = React.createClass({
+        render: function() {
+          var unitNodes = this.props.data.map(function(unit){
             var thisStatusIcon = status_icons.status['default']; //sets icon to default
 
             if ( status_icons.status[unit.status] != undefined ){ //finds icon in structure
@@ -390,6 +483,7 @@
         }
       });
 
+
       var Unit = React.createClass({
         render: function() {
           var thisImageClass = "fa " + this.props.statusIcon + " fa-" + application_settings.icon_size + "x";
@@ -397,8 +491,6 @@
               <div className="col-md-1 unit">
                 <div className="unit_title" data-unit_id={this.props.unit_id} >
                   {this.props.unit_id} - {this.props.status}
-                  //<div className="unit_actions" data-unit_id={this.props.unit_id} >
-                  //</div>
                 </div>
                 <div className="unit_image">
                   <a href="#unitPop" data-toggle="modal" className="open-UnitPop" data-unit_id={this.props.unit_id} ><i className={thisImageClass} aria-hidden="true"></i></a>
@@ -413,7 +505,9 @@
             );
         }
       });
+      */
 
+      /*
       $(document).on("click", ".open-UnitPop", function () {
         var unit_id = this.dataset.unit_id;
         $("#unitPop_header").html("<h4>" + unit_id + "</h4>");
@@ -421,6 +515,7 @@
         $("#unitPop_incidentType").html( "Incident Type: " + incidents.incident.incident_type );
         $("#unitPop_incidentCrew").html( "Crew: " + incidents.incident.incident_crew );
       });
+      */
 
       // $(document).on("mouseenter",".unit", function(){
       //   console.log('over');
@@ -437,10 +532,6 @@
       //   }, 0 );
       // });
 
-      ReactDOM.render(
-        <UnitsBox data={data} />,
-        document.getElementById('content')
-      );
     </script>
 
     <div class="modal fade" id="unitPop" role="dialog" >
