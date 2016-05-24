@@ -2,7 +2,7 @@
         {
           "unit_id": "M01",
           "status": "ER",
-          "timestamp": "5/23/2016 07:17",
+          "timestamp": "5/24/2016 17:17",
           "channel": "DISP1",
           "assigned_incident": 112345,
           "location": "1683 HANSON ST",
@@ -13,11 +13,11 @@
         },
         {
           "unit_id": "M02",
-          "status": "AQ",
-          "timestamp": "5/12/2016 06:10",
+          "status": "ER",
+          "timestamp": "5/24/2016 16:10",
           "channel": "",
-          "assigned_incident": 0 ,
-          "location": "IN STATION",
+          "assigned_incident": 446845 ,
+          "location": "DOWNTOWN",
           "agency": "LC",
           "district": "S",
           "inservice": "Y"
@@ -25,7 +25,7 @@
         },
         {
           "unit_id": "M03",
-          "status": "TR",
+          "status": "TA",
           "timestamp": "5/12/2016 07:10",
           "channel": "DISP1",
           "assigned_incident": 112347,
@@ -105,8 +105,8 @@
         },
         {
           "unit_id": "M10",
-          "status": "SA",
-          "timestamp": "5/12/2016 07:10",
+          "status": "ER",
+          "timestamp": "5/24/2016 17:10",
           "channel": "DISP2",
           "assigned_incident": 112348,
           "location": "4009 SW 23RD AVE",
