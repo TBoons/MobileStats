@@ -385,26 +385,26 @@
             );
         },
         componentDidMount: function(){
-          console.log("Mounted...");
           unitsWorker();
         }
       });
 
       var Unit = React.createClass({
         render: function() {
+          var defaultIconClass = "fa fa-" + application_settings.icon_size + "x " + status_icons.status.default;
           return (
-              <div className="col-md-1 unit" id={this.props.unit_id+ "_unit"}  >
+              <div className="col-md-1 unit" id={this.props.unit_id+ "_unit"} >
                 <div className="unit_title" >
                   {this.props.unit_id}
                 </div>
                 <div className="unit_image" >
-                  <i aria-hidden="true"></i>
+                  <i aria-hidden="true" className={defaultIconClass} ></i>
                 </div>
                 <div className="unit_location" >
-
+                  &nbsp;
                 </div>
                 <div className="unit_timeInStatus">
-
+                  XX
                 </div>
               </div>
             );
@@ -412,27 +412,35 @@
       });
 
       var unitsWorker = function(){
-        var thisStatusIcon = status_icons.status['default']; //sets icon to default
-        for ( var i = 0; i <= aryUnits.length; i++ ){
-          var currentUnitData = getUnitData( aryUnits[i] );
-          console.log(currentUnitData);
-          var unitDiv = '#' + aryUnits[i] + "_unit";
-          if ( currentUnitData.status != undefined ){
-            var timeInStatus = calcTimeInStatus( currentUnitData.timestamp );
-            if ( status_icons.status[currentUnitData.status] != undefined ){ //finds icon in structure
-              thisStatusIcon = status_icons.status[currentUnitData.status];
+          $.getJSON("data/data.json", function(data){
+            for ( var i = 0; i <= aryUnits.length; i++ ){
+              getUnitData( aryUnits[i], data );
             }
-            $(unitDiv).find(".unit_title").html(aryUnits[i] + ' - ' + currentUnitData.status);
-            $(unitDiv).find(".unit_image").find("i").addClass("fa " + thisStatusIcon + " fa-" + application_settings.icon_size + "x");
-            $(unitDiv).find(".unit_location").html(currentUnitData.location);
+          });
+      }
+
+      var renderUnit = function(unitData){
+          var thisStatusIcon = status_icons.status['default']; //sets icon to default
+          var unitDiv = '#' + unitData.unit_id + "_unit";
+          if ( unitData.status != undefined ){
+            var timeInStatus = calcTimeInStatus( unitData.timestamp );
+            if ( status_icons.status[unitData.status] != undefined ){ //finds icon in structure
+              thisStatusIcon = status_icons.status[unitData.status];
+            }
+            $(unitDiv).find(".unit_title").html(unitData.unit_id + ' - ' + unitData.status);
+            $(unitDiv).find(".unit_image").find("i").removeClass( "fa-ambulance" );
+            $(unitDiv).find(".unit_image").find("i").addClass( "fa " + thisStatusIcon );
+            $(unitDiv).find(".unit_location").html(unitData.location);
             $(unitDiv).find(".unit_timeInStatus").html(timeInStatus);
-          } else {
-            $(unitDiv).find(".unit_title").html(aryUnits[i] + ' - NA' );
-            $(unitDiv).find(".unit_image").find("i").addClass("fa " + thisStatusIcon + " fa-" + application_settings.icon_size + "x");
-            $(unitDiv).find(".unit_location").html("&nbsp;");
-            $(unitDiv).find(".unit_timeInStatus").html('XX');
           }
-        }
+      }
+
+      var getUnitData = function(unit, allUnitData){
+          allUnitData.map(function(i){
+            if ( i.unit_id === unit ){ //unit data is found in dataset
+              renderUnit(i);
+            }
+          });
       }
 
       var calcTimeInStatus = function(statusTime){
@@ -447,21 +455,6 @@
           rtn = hours + ":" + minutes;
         }
         return rtn;
-      }
-
-      var getUnitData = function(unit){
-
-        $.getJSON("data/data.json", function(data){
-
-          data.map(function(i){
-            if ( i.unit_id === unit ){
-              rtn = i;
-            }
-          });
-
-        });
-
-        return {"unit_id": unit};
       }
 
       ReactDOM.render(
