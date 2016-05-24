@@ -54,7 +54,7 @@
 
       var aryUnits = ["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23","M24","M25","M26","M27","M28","M30","M31","M32","M33","M34","M35","M37","M40"];
 
-      var data = [
+      var unit_data = [
         {
           "unit_id": "M01",
           "status": "ER",
@@ -412,14 +412,16 @@
       });
 
       var unitsWorker = function(){
+        var thisStatusIcon = status_icons.status['default']; //sets icon to default
         for ( var i = 0; i <= aryUnits.length; i++ ){
           var currentUnitData = getUnitData( aryUnits[i] );
+          console.log(currentUnitData);
           var unitDiv = '#' + aryUnits[i] + "_unit";
-          var thisStatusIcon = status_icons.status['default']; //sets icon to default
           if ( currentUnitData.status != undefined ){
             var timeInStatus = calcTimeInStatus( currentUnitData.timestamp );
-            thisStatusIcon = status_icons.status[currentUnitData.status];
-
+            if ( status_icons.status[currentUnitData.status] != undefined ){ //finds icon in structure
+              thisStatusIcon = status_icons.status[currentUnitData.status];
+            }
             $(unitDiv).find(".unit_title").html(aryUnits[i] + ' - ' + currentUnitData.status);
             $(unitDiv).find(".unit_image").find("i").addClass("fa " + thisStatusIcon + " fa-" + application_settings.icon_size + "x");
             $(unitDiv).find(".unit_location").html(currentUnitData.location);
@@ -448,15 +450,18 @@
       }
 
       var getUnitData = function(unit){
-        var rtn = {
-          "unit_id" : unit
-        };
-        data.map(function(i){
-          if ( i.unit_id === unit ){
-            rtn = i;
-          }
+
+        $.getJSON("data/data.json", function(data){
+
+          data.map(function(i){
+            if ( i.unit_id === unit ){
+              rtn = i;
+            }
+          });
+
         });
-        return rtn;
+
+        return {"unit_id": unit};
       }
 
       ReactDOM.render(

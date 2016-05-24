@@ -1,0 +1,282 @@
+[
+        {
+          "unit_id": "M01",
+          "status": "ER",
+          "timestamp": "5/23/2016 07:17",
+          "channel": "DISP1",
+          "assigned_incident": 112345,
+          "location": "1683 HANSON ST",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M02",
+          "status": "AQ",
+          "timestamp": "5/12/2016 06:10",
+          "channel": "",
+          "assigned_incident": 0 ,
+          "location": "IN STATION",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M03",
+          "status": "TR",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP1",
+          "assigned_incident": 112347,
+          "location": "D1 P1 P2 1P3 X26",
+          "agency": "LC",
+          "district": "N",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M04",
+          "status": "AQ",
+          "timestamp": "5/12/2016 05:25",
+          "channel": "",
+          "assigned_incident": 0,
+          "location": "IN STATION",
+          "agency": "LC",
+          "district": "CC",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M05",
+          "status": "RQ",
+          "timestamp": "5/12/2016 07:18",
+          "channel": "",
+          "assigned_incident": 0,
+          "location": "TAMPA/SAN CARLOS>>EMS09",
+          "agency": "LC",
+          "district": "W",
+          "inservice": "Y"
+
+        },
+        {
+          "unit_id": "M06",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M07",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M08",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M09",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M10",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M11",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M12",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M13",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M14",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M15",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M16",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M17",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M18",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M19",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M20",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M21",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M22",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M23",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M24",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        },
+        {
+          "unit_id": "M25",
+          "status": "SA",
+          "timestamp": "5/12/2016 07:10",
+          "channel": "DISP2",
+          "assigned_incident": 112348,
+          "location": "4009 SW 23RD AVE",
+          "agency": "LC",
+          "district": "S",
+          "inservice": "Y"
+        }
+      ]
